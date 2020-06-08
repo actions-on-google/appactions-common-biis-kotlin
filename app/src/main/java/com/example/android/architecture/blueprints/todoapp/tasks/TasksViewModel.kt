@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 The Android Open Source Project
+ * Copyright (C) 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,6 +59,7 @@ class TasksViewModel(
     }
 
     val items: LiveData<List<Task>> = _items
+    val filterKeyword: LiveData<String> = savedStateHandle.getLiveData(TASKS_FILTER_KEYWORD)
 
     private val _dataLoading = MutableLiveData<Boolean>()
     val dataLoading: LiveData<Boolean> = _dataLoading
@@ -135,6 +136,13 @@ class TasksViewModel(
         loadTasks(false)
     }
 
+    fun setFiltering(searchKeyword: String?) {
+        savedStateHandle.set(TASKS_FILTER_KEYWORD, searchKeyword)
+
+        // Refresh list
+        loadTasks(false)
+    }
+
     private fun setFilter(
         @StringRes filteringLabelString: Int,
         @StringRes noTasksLabelString: Int,
@@ -199,7 +207,8 @@ class TasksViewModel(
         if (tasksResult is Success) {
             isDataLoadingError.value = false
             viewModelScope.launch {
-                result.value = filterItems(tasksResult.data, getSavedFilterType())
+                val filteredTasksByType = filterItems(tasksResult.data, getSavedFilterType())
+                result.value = filterItemsByKeyword(filteredTasksByType, getFilterKeyword())
             }
         } else {
             result.value = emptyList()
@@ -232,7 +241,12 @@ class TasksViewModel(
             }
         }
         return tasksToShow
-        }
+    }
+
+    private fun filterItemsByKeyword(tasks: List<Task>, keyword: String): List<Task> {
+        // We filter the tasks based on the keyword
+        return tasks.filter { task -> task.title.contains(keyword, true) }
+    }
 
     fun refresh() {
         _forceUpdate.value = true
@@ -241,7 +255,14 @@ class TasksViewModel(
     private fun getSavedFilterType() : TasksFilterType {
         return savedStateHandle.get(TASKS_FILTER_SAVED_STATE_KEY) ?: ALL_TASKS
     }
+
+    private fun getFilterKeyword() : String {
+        return savedStateHandle.get(TASKS_FILTER_KEYWORD) ?: ""
+    }
 }
 
 // Used to save the current filtering in SavedStateHandle.
 const val TASKS_FILTER_SAVED_STATE_KEY = "TASKS_FILTER_SAVED_STATE_KEY"
+
+// Used to filter by a keyword contained in task name
+const val TASKS_FILTER_KEYWORD = "TASKS_FILTER_KEYWORD"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (C) 2019 The Android Open Source Project
+  ~ Copyright (C) 2020 Google LLC
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -40,8 +40,15 @@
         android:label="@string/app_name">
         <action
             android:id="@+id/action_statisticsFragment_to_tasksFragment"
-            app:destination="@id/tasks_fragment_dest"
-            />
+            app:destination="@id/tasks_fragment_dest" />
+        <argument
+            android:name="utm_campaign"
+            app:nullable="true"
+            app:argType="string"
+            android:defaultValue="@null"/>
+        <deepLink
+            android:id="@+id/statsDeeplink"
+            app:uri="https://todo.androidappactions.com/statistics?utm_campaign={utm_campaign}" />
     </fragment>
     <fragment
         android:id="@+id/tasks_fragment_dest"
@@ -58,8 +65,33 @@
             app:destination="@id/add_edit_task_fragment_dest" />
         <argument
             android:name="userMessage"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="integer" />
+        <argument
+            android:name="filter"
+            app:argType="string"
+            android:defaultValue="ALL_TASKS"/>
+        <argument
+            android:name="q"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="utm_campaign"
+            app:nullable="true"
+            app:argType="string"
+            android:defaultValue="@null"/>
+        <deepLink
+            android:id="@+id/activeTasksListDeeplink"
+            app:uri="https://todo.androidappactions.com/active-tasks?utm_campaign={utm_campaign}" />
+        <deepLink
+            android:id="@+id/completedTasksListDeeplink"
+            app:uri="https://todo.androidappactions.com/completed-tasks?utm_campaign={utm_campaign}" />
+        <deepLink
+            android:id="@+id/allTasksListDeeplink"
+            app:uri="https://todo.androidappactions.com/all-tasks?utm_campaign={utm_campaign}" />
+        <deepLink
+            android:id="@+id/tasksSearchDeeplink"
+            app:uri="https://todo.androidappactions.com/search?q={q}&amp;utm_campaign={utm_campaign}"/>
     </fragment>
     <fragment
         android:id="@+id/add_edit_task_fragment_dest"

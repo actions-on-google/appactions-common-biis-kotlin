@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 The Android Open Source Project
+ * Copyright (C) 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@ class FakeRepository : TasksRepository {
                 is Result.Loading -> Result.Loading
                 is Error -> Error(tasks.exception)
                 is Success -> {
-                    val task = tasks.data.firstOrNull() { it.id == taskId }
+                    val task = tasks.data.firstOrNull { it.id == taskId }
                         ?: return@map Error(Exception("Not found"))
                     Success(task)
                 }

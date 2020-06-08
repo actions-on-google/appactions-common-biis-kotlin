@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 The Android Open Source Project
+ * Copyright (C) 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,8 +35,18 @@ object TasksRemoteDataSource : TasksDataSource {
     private var TASKS_SERVICE_DATA = LinkedHashMap<String, Task>(2)
 
     init {
-        addTask("Build tower in Pisa", "Ground looks good, no foundation work required.")
-        addTask("Finish bridge in Tacoma", "Found awesome girders at half the cost!")
+        addTask("[Work] Build tower in Pisa", "Ground looks good, no foundation work required.")
+        addTask("[Work] Finish bridge in Tacoma", "Found awesome girders at half the cost!")
+        addTask("[Home] Milk", "On the way home!", true)
+        addTask("[Home] Eggs", "")
+        addTask("[Home] Cake mix", "")
+        addTask("[Home] Cut the grass mix", "")
+        addTask("[Family] Call mom for her birthday", "Call at home when family is around.")
+        addTask("[Family] Buy toys for my son", "It's a surprise. Maybe a Spiderman?")
+        addTask("[Travel] Pack passport", "Never forget it.", true)
+        addTask("[Travel] Pack swimsuit", "For the beach and pool.")
+        addTask("[Travel] Pack sunglasses", "It's gonna be real warm and sunny!")
+        addTask("[Travel] Pack credit card", "It's a must bring!", true)
     }
 
     private val observableTasks = MutableLiveData<Result<List<Task>>>()
@@ -59,7 +69,7 @@ object TasksRemoteDataSource : TasksDataSource {
                 is Result.Loading -> Result.Loading
                 is Error -> Error(tasks.exception)
                 is Success -> {
-                    val task = tasks.data.firstOrNull() { it.id == taskId }
+                    val task = tasks.data.firstOrNull { it.id == taskId }
                         ?: return@map Error(Exception("Not found"))
                     Success(task)
                 }
@@ -83,8 +93,8 @@ object TasksRemoteDataSource : TasksDataSource {
         return Error(Exception("Task not found"))
     }
 
-    private fun addTask(title: String, description: String) {
-        val newTask = Task(title, description)
+    private fun addTask(title: String, description: String, completed: Boolean = false) {
+        val newTask = Task(title, description, completed)
         TASKS_SERVICE_DATA[newTask.id] = newTask
     }
 

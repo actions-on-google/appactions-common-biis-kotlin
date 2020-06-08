@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 The Android Open Source Project
+ * Copyright (C) 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,6 @@ import com.example.android.architecture.blueprints.todoapp.util.setupRefreshLayo
 class StatisticsFragment : Fragment() {
 
     private lateinit var viewDataBinding: StatisticsFragBinding
-
     private val viewModel by viewModels<StatisticsViewModel> { getViewModelFactory() }
 
     override fun onCreateView(
@@ -45,6 +44,7 @@ class StatisticsFragment : Fragment() {
             inflater, R.layout.statistics_frag, container,
             false
         )
+
         return viewDataBinding.root
     }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 The Android Open Source Project
+ * Copyright (C) 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,13 +23,16 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.android.architecture.blueprints.todoapp.EventObserver
 import com.example.android.architecture.blueprints.todoapp.R
+import com.example.android.architecture.blueprints.todoapp.assistant.DeepLink
 import com.example.android.architecture.blueprints.todoapp.data.Task
 import com.example.android.architecture.blueprints.todoapp.databinding.TasksFragBinding
 import com.example.android.architecture.blueprints.todoapp.util.getViewModelFactory
@@ -44,7 +47,7 @@ import timber.log.Timber
  */
 class TasksFragment : Fragment() {
 
-    private val viewModel by viewModels<TasksViewModel> { getViewModelFactory() }
+    private val viewModel by activityViewModels<TasksViewModel> { getViewModelFactory() }
 
     private val args: TasksFragmentArgs by navArgs()
 
@@ -61,6 +64,14 @@ class TasksFragment : Fragment() {
             viewmodel = viewModel
         }
         setHasOptionsMenu(true)
+
+        // Set a listener on task button
+        setupFab()
+
+        viewModel.setFiltering(TasksFilterType.find(activity?.intent?.data?.path))
+
+        viewModel.setFiltering(arguments?.getString(DeepLink.Params.Q))
+
         return viewDataBinding.root
     }
 
@@ -83,6 +94,34 @@ class TasksFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.tasks_fragment_menu, menu)
+
+        val searchItem: MenuItem = menu.findItem(R.id.searchBar)
+        val searchView = searchItem.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                searchView.clearFocus()
+                searchView.setQuery("", false)
+                searchItem.collapseActionView()
+                viewModel.setFiltering(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                viewModel.setFiltering(newText)
+                return false
+            }
+        })
+
+        viewModel.filterKeyword.observe(viewLifecycleOwner, Observer<String> { keyword: String? ->
+            val searchView: SearchView = searchItem.actionView as SearchView
+            searchView.apply{
+                setQuery(keyword, false)
+                setIconifiedByDefault(false)
+            }
+            searchItem.expandActionView()
+            menu.findItem(R.id.searchBar).expandActionView()
+        })
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -98,10 +137,10 @@ class TasksFragment : Fragment() {
     }
 
     private fun setupNavigation() {
-        viewModel.openTaskEvent.observe(this, EventObserver {
+        viewModel.openTaskEvent.observe(viewLifecycleOwner, EventObserver {
             openTaskDetails(it)
         })
-        viewModel.newTaskEvent.observe(this, EventObserver {
+        viewModel.newTaskEvent.observe(viewLifecycleOwner, EventObserver {
             navigateToAddNewTask()
         })
     }
@@ -133,7 +172,7 @@ class TasksFragment : Fragment() {
     }
 
     private fun setupFab() {
-        activity?.findViewById<FloatingActionButton>(R.id.add_task_fab)?.let {
+        view?.findViewById<FloatingActionButton>(R.id.add_task_fab)?.let {
             it.setOnClickListener {
                 navigateToAddNewTask()
             }
