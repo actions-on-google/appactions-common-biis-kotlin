@@ -25,7 +25,7 @@
         <!-- feature parameter is defined in inline inventory(entitySetId).
         E.g. active, pending, all tasks, or statistics. -->
         <parameter name="feature">
-            <entity-set-reference entitySetId="FeatureEntitySet" required="false"/>
+            <entity-set-reference entitySetId="FeatureEntitySet"/>
         </parameter>
 
         <fulfillment urlTemplate="{@url}"/>

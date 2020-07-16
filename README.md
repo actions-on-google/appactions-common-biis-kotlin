@@ -66,13 +66,18 @@ After you create a preview, you can then try using voice or written commands dir
 
 If you run into any issues, check out the [troubleshooting guide](https://developers.google.com/assistant/app/troubleshoot) in our developer documentation.
 
-## Contributing
+## Contribution guidelines
 
-1. Fork it
-2. Create your feature branch (git checkout -b my-cool-new-feature)
-3. Commit your changes (git commit -m 'Add some feature')
-4. Push your branch (git push origin my-cool-new-feature)
-5. Create a new Pull Request
+If you want to contribute to this project, be sure to review the
+[contribution guidelines](CONTRIBUTING.md).
+
+We use [GitHub issues](https://github.com/actions-on-google/appactions-common-biis-kotlin/issues) for
+tracking requests and bugs, please get support by posting your technical questions to
+[Stack Overflow](https://stackoverflow.com/questions/tagged/app-actions).
+
+Report [general issues with App Actions features](https://issuetracker.google.com/issues/new?component=617864&template=1257475)
+or [make suggestions for additional built-in intents](https://issuetracker.google.com/issues/new?component=617864&template=1261453)
+through our public issue tracker.
 
 ## References
 
