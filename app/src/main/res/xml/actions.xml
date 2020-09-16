@@ -28,19 +28,19 @@
             <entity-set-reference entitySetId="FeatureEntitySet" required="false"/>
         </parameter>
 
-        <fulfillment urlTemplate="{@url}"/>
+        <fulfillment urlTemplate="{@url}?utm_campaign=appactions"/>
         <!-- Fallback fulfillment with no required parameters -->
         <fulfillment urlTemplate="https://todo.androidappactions.com/all-tasks?utm_campaign=appactions"/>
     </action>
 
     <entity-set entitySetId="FeatureEntitySet">
-        <entity  url="https://todo.androidappactions.com/completed-tasks?utm_campaign=appactions"
+        <entity  url="https://todo.androidappactions.com/completed-tasks"
             name="completed tasks" alternateName="@array/completed_tasks_synonyms"/>
-        <entity url="https://todo.androidappactions.com/active-tasks?utm_campaign=appactions"
+        <entity url="https://todo.androidappactions.com/active-tasks"
             name="active tasks" alternateName="@array/active_tasks_synonyms"/>
-        <entity url="https://todo.androidappactions.com/all-tasks?utm_campaign=appactions"
+        <entity url="https://todo.androidappactions.com/all-tasks"
             name="all tasks" alternateName="@array/all_tasks_synonyms"/>
-        <entity url="https://todo.androidappactions.com/statistics?utm_campaign=appactions"
+        <entity url="https://todo.androidappactions.com/statistics"
             name="statistics" alternateName="@array/statistics_synonyms"/>
     </entity-set>
 

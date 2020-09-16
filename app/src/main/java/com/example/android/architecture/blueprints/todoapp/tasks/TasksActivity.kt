@@ -16,6 +16,7 @@
 package com.example.android.architecture.blueprints.todoapp.tasks
 
 import android.app.Activity
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
@@ -27,6 +28,10 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.android.architecture.blueprints.todoapp.R
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import timber.log.Timber
 
 /**
@@ -36,12 +41,20 @@ class TasksActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var appBarConfiguration: AppBarConfiguration
     private val TAG = "TasksActivity"
+    private val N_A = "N/A"
+
+    // Obtain the FirebaseAnalytics instance.
+    private lateinit var mFirebaseAnalytics: FirebaseAnalytics
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.tasks_act)
         setupNavigationDrawer()
         setSupportActionBar(findViewById(R.id.toolbar))
+
+        // Obtain the FirebaseAnalytics instance
+        mFirebaseAnalytics = Firebase.analytics
+        logEventToFirebase(intent.data);
 
         // Logging for troubleshooting purposes
         Timber.tag(TAG).d("======= debugging data =========" + intent?.data)
@@ -67,6 +80,21 @@ class TasksActivity : AppCompatActivity() {
                 setStatusBarBackground(R.color.colorPrimaryDark)
             }
     }
+
+
+    /**
+    * This method will record the event to Firebase
+    */
+    private fun logEventToFirebase(data: Uri?) {
+        val utmCampaign: String = data?.getQueryParameter("utm_campaign") ?: N_A
+        val path: String = data?.path ?: N_A
+        Timber.tag(TAG).d("======= Logging data =======" + data)
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN) {
+            param(FirebaseAnalytics.Param.CAMPAIGN, utmCampaign)
+            param("app_action_path", path) // custom parameter
+        }
+    }
+
 }
 
 // Keys for navigation
