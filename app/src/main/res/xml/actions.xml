@@ -34,7 +34,7 @@
     </action>
 
     <entity-set entitySetId="FeatureEntitySet">
-        <entity  url="https://todo.androidappactions.com/completed-tasks"
+        <entity url="https://todo.androidappactions.com/completed-tasks"
             name="completed tasks" alternateName="@array/completed_tasks_synonyms"/>
         <entity url="https://todo.androidappactions.com/active-tasks"
             name="active tasks" alternateName="@array/active_tasks_synonyms"/>
