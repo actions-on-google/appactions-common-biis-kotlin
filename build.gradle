@@ -16,15 +16,15 @@
  */
 
 buildscript {
-    ext.kotlinVersion = '1.3.61'
-    ext.navigationVersion = '2.2.0-rc02'
+    ext.kotlinVersion = '1.4.21'
+    ext.navigationVersion = '2.3.2'
     ext.ktlintVersion = '0.33.0'
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.0'
+        classpath 'com.android.tools.build:gradle:4.1.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
 
@@ -62,28 +62,28 @@ ext {
 
     // App dependencies
     androidXVersion = '1.0.0'
-    androidXTestCoreVersion = '1.2.0'
-    androidXTestExtKotlinRunnerVersion = '1.1.1'
+    androidXTestCoreVersion = '1.3.0'
+    androidXTestExtKotlinRunnerVersion = '1.1.2'
     androidXTestRulesVersion = '1.2.0'
     androidXAnnotations = '1.1.0'
     androidXLegacySupport = '1.0.0'
-    appCompatVersion = '1.1.0'
-    archLifecycleVersion = '2.2.0-rc02'
+    appCompatVersion = '1.2.0'
+    archLifecycleVersion = '2.2.0'
     archTestingVersion = '2.1.0'
     cardVersion = '1.0.0'
     coroutinesVersion = '1.2.1'
     dexMakerVersion = '2.12.1'
-    espressoVersion = '3.2.0'
-    fragmentVersion = '1.2.0-rc02'
-    fragmentKtxVersion = '1.1.0-rc01'
+    espressoVersion = '3.3.0'
+    fragmentVersion = '1.2.5'
+    fragmentKtxVersion = '1.2.5'
     hamcrestVersion = '1.3'
-    junitVersion = '4.12'
-    materialVersion = '1.0.0'
-    mockitoVersion = '2.19.0'
+    junitVersion = '4.13.1'
+    materialVersion = '1.2.1'
+    mockitoVersion = '2.22.0'
     recyclerViewVersion = '1.1.0'
     robolectricVersion = '4.3.1'
-    roomVersion = '2.2.2'
+    roomVersion = '2.2.5'
     rulesVersion = '1.0.1'
     timberVersion = '4.7.1'
-    truthVersion = '1.0'
+    truthVersion = '1.1'
 }

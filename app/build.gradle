@@ -65,31 +65,6 @@ android {
 
     flavorDimensions "default"
 
-    // If you need to add more flavors, consider using flavor dimensions.
-    productFlavors {
-        mock {
-            // Keep in mind when using productFlavors:
-            // 1. When testing with the App Actions test tool, you require having an app by the same
-            // package name (as at least a draft) on Play Console.
-            // 2. If using applicationIdSuffix, either remove the suffix in your build script
-            // when testing App Actions or upload a Play Console draft with package name by
-            // applicationId + applicationIdSuffix.
-            applicationIdSuffix = ".mock"
-        }
-        prod {
-            dimension "default"
-            isDefault = true
-        }
-    }
-
-    // Remove mockRelease as it's not needed.
-    android.variantFilter { variant ->
-        if (variant.buildType.name == 'release'
-                && variant.getFlavors().get(0).name == 'mock') {
-            variant.setIgnore(true)
-        }
-    }
-
     // Always show the result of every unit test, even if it passes.
     testOptions.unitTests {
         includeAndroidResources = true
@@ -101,9 +76,8 @@ android {
         }
     }
 
-    dataBinding {
-        enabled = true
-        enabledForTests = true
+    buildFeatures {
+        dataBinding = true
     }
 
     compileOptions {
@@ -169,9 +143,8 @@ dependencies {
     testImplementation "androidx.test.ext:junit-ktx:$androidXTestExtKotlinRunnerVersion"
     testImplementation "androidx.test:rules:$androidXTestRulesVersion"
     // Once https://issuetracker.google.com/127986458 is fixed this can be testImplementation
-    implementation "androidx.fragment:fragment-testing:$fragmentVersion"
+    debugImplementation "androidx.fragment:fragment-testing:$fragmentVersion"
     implementation "androidx.test:core:$androidXTestCoreVersion"
-    implementation "androidx.fragment:fragment:$fragmentVersion"
 
     // AndroidX Test - Instrumented testing
     androidTestImplementation "androidx.test:core-ktx:$androidXTestCoreVersion"
@@ -197,3 +170,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
 }
+
+/*configurations.all() {
+    resolutionStrategy.force "org.antlr:antlr4-runtime:4.5.3"
+    resolutionStrategy.force "org.antlr:antlr4-tool:4.5.3"
+}*/

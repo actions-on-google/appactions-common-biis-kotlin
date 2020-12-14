@@ -59,7 +59,7 @@ class TasksFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         viewDataBinding = TasksFragBinding.inflate(inflater, container, false).apply {
             viewmodel = viewModel
         }
@@ -112,9 +112,9 @@ class TasksFragment : Fragment() {
             }
         })
 
-        viewModel.filterKeyword.observe(viewLifecycleOwner, Observer<String> { keyword: String? ->
-            val searchView: SearchView = searchItem.actionView as SearchView
-            searchView.apply{
+        viewModel.filterKeyword.observe(viewLifecycleOwner, { keyword: String? ->
+            val searchView1: SearchView = searchItem.actionView as SearchView
+            searchView1.apply{
                 setQuery(keyword, false)
                 setIconifiedByDefault(false)
             }
@@ -124,9 +124,8 @@ class TasksFragment : Fragment() {
 
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         // Set the lifecycle owner to the lifecycle of the view
         viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
         setupSnackbar()

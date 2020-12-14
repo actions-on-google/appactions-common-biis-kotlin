@@ -44,12 +44,12 @@ class TasksActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
 
         // Logging for troubleshooting purposes
-        Timber.tag(TAG).d("======= debugging data =========" + intent?.data)
+        Timber.tag(TAG).d("======= debugging data ========= %s", intent?.data)
 
         val navController: NavController = findNavController(R.id.nav_host_fragment)
         appBarConfiguration =
             AppBarConfiguration.Builder(R.id.tasks_fragment_dest, R.id.statistics_fragment_dest)
-                .setDrawerLayout(drawerLayout)
+                .setOpenableLayout(drawerLayout)
                 .build()
         setupActionBarWithNavController(navController, appBarConfiguration)
         findViewById<NavigationView>(R.id.nav_view)
