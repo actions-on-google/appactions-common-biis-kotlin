@@ -16,41 +16,10 @@
   -->
 
 <actions>
-
-    <!-- This intent instruments the App to be triggered by Google Assistant using test queries like
-        `Open active, pending, completed tasks, or stats in $your_app_name`.
-     -->
     <action intentName="actions.intent.OPEN_APP_FEATURE">
+        <!-- TODO: Handle intent parameters -->
 
-        <!-- feature parameter is defined in inline inventory(entitySetId).
-        E.g. active, pending, all tasks, or statistics. -->
-        <parameter name="feature">
-            <entity-set-reference entitySetId="FeatureEntitySet"/>
-        </parameter>
+        <!-- TODO: Handle action fulfillment -->
 
-        <fulfillment urlTemplate="{@url}"/>
-        <!-- Fallback fulfillment with no required parameters -->
-        <fulfillment urlTemplate="https://todo.androidappactions.com/all-tasks?utm_campaign=appactions"/>
-    </action>
-
-    <entity-set entitySetId="FeatureEntitySet">
-        <entity  url="https://todo.androidappactions.com/completed-tasks?utm_campaign=appactions"
-            name="completed tasks" alternateName="@array/completed_tasks_synonyms"/>
-        <entity url="https://todo.androidappactions.com/active-tasks?utm_campaign=appactions"
-            name="active tasks" alternateName="@array/active_tasks_synonyms"/>
-        <entity url="https://todo.androidappactions.com/all-tasks?utm_campaign=appactions"
-            name="all tasks" alternateName="@array/all_tasks_synonyms"/>
-        <entity url="https://todo.androidappactions.com/statistics?utm_campaign=appactions"
-            name="statistics" alternateName="@array/statistics_synonyms"/>
-    </entity-set>
-
-    <!-- This intent handles search queries like `search any_query in $your_app_name`.
-     -->
-    <action intentName="actions.intent.GET_THING">
-        <fulfillment urlTemplate="https://todo.androidappactions.com/search?q={q}&amp;utm_campaign=appactions">
-            <parameter-mapping
-                intentParameter="thing.name"
-                urlParameter="q"/>
-        </fulfillment>
     </action>
 </actions>
