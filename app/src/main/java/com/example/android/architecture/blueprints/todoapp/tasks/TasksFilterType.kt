@@ -15,7 +15,13 @@
  */
 package com.example.android.architecture.blueprints.todoapp.tasks
 
-import com.example.android.architecture.blueprints.todoapp.assistant.DeepLink
+/**
+ * Const values are coming from Assistants intent extras
+ */
+const val COMPLETED_TASK_VALUE = "completed_tasks"
+const val ACTIVE_TASK_VALUE = "active_tasks"
+const val ALL_TASK_VALUE = "all_tasks"
+
 
 /**
  * Used with the filter spinner in the tasks list.
@@ -25,15 +31,15 @@ enum class TasksFilterType(val value: String) {
     /**
      * Filters only the active (not completed yet) tasks.
      */
-    ACTIVE_TASKS(DeepLink.ACTIVE_TASKS_PATH),
+    ACTIVE_TASKS(ACTIVE_TASK_VALUE),
     /**
      * Filters only the completed tasks.
      */
-    COMPLETED_TASKS(DeepLink.COMPLETED_TASKS_PATH),
+    COMPLETED_TASKS(COMPLETED_TASK_VALUE),
     /**
      * Do not filter tasks.
      */
-    ALL_TASKS(DeepLink.ALL_TASKS_PATH);
+    ALL_TASKS(ALL_TASK_VALUE);
 
     companion object {
 

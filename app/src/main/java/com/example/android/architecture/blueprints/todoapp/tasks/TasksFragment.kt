@@ -17,6 +17,7 @@
 package com.example.android.architecture.blueprints.todoapp.tasks
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -27,12 +28,10 @@ import android.widget.SearchView
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.android.architecture.blueprints.todoapp.EventObserver
 import com.example.android.architecture.blueprints.todoapp.R
-import com.example.android.architecture.blueprints.todoapp.assistant.DeepLink
 import com.example.android.architecture.blueprints.todoapp.data.Task
 import com.example.android.architecture.blueprints.todoapp.databinding.TasksFragBinding
 import com.example.android.architecture.blueprints.todoapp.util.getViewModelFactory
@@ -40,7 +39,18 @@ import com.example.android.architecture.blueprints.todoapp.util.setupRefreshLayo
 import com.example.android.architecture.blueprints.todoapp.util.setupSnackbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-import timber.log.Timber
+
+
+/**
+ * Const values from App Action capability's parameter key
+ */
+private const val OPEN_APP_FEATURE = "feature"
+private const val GET_THING = "q"
+
+/**
+ * Const value for logging errors
+ */
+private const val TAG = "TasksFragment"
 
 /**
  * Display a grid of [Task]s. User can choose to view all, active or completed tasks.
@@ -68,9 +78,9 @@ class TasksFragment : Fragment() {
         // Set a listener on task button
         setupFab()
 
-        viewModel.setFiltering(TasksFilterType.find(activity?.intent?.data?.path))
+        viewModel.setFiltering(TasksFilterType.find(activity?.intent?.extras?.getString(OPEN_APP_FEATURE)))
 
-        viewModel.setFiltering(arguments?.getString(DeepLink.Params.Q))
+        viewModel.setFiltering(activity?.intent?.extras?.getString(GET_THING))
 
         return viewDataBinding.root
     }
@@ -198,7 +208,7 @@ class TasksFragment : Fragment() {
             listAdapter = TasksAdapter(viewModel)
             viewDataBinding.tasksList.adapter = listAdapter
         } else {
-            Timber.w("ViewModel not initialized when attempting to set up adapter.")
+            Log.d(TAG, "ViewModel not initialized when attempting to set up adapter.")
         }
     }
 }
