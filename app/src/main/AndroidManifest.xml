@@ -49,12 +49,12 @@
             <!-- When building your project, <nav-graph> element will be replaced with generated
             <intent-filter> elements for all deep links defined in the navigation graph. -->
             <nav-graph android:value="@navigation/nav_graph" />
-        </activity>
 
-        <!-- Required reference to App Actions actions.xml file. -->
-        <meta-data
-            android:name="com.google.android.actions"
-            android:resource="@xml/actions" />
+            <!-- Required reference to App Actions shortcuts.xml file. -->
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+        </activity>
     </application>
 
 </manifest>
