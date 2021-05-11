@@ -59,7 +59,6 @@ class TasksActivity : AppCompatActivity() {
 
     fun logIntent(intent: Intent) {
         val bundle: Bundle = intent.extras ?: return
-        val keys = bundle.keySet()
 
         Log.d(TAG, "======= logIntent ========= %s")
         Log.d(TAG, "Logging intent data start")
