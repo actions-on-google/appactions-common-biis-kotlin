@@ -24,6 +24,16 @@ The app demonstrates usage of the following built-in intents (BIIs) in the commo
   <img alt="App Actions Demo" src="media/to-do-demo.gif">
 </div>
 
+## Beta available
+
+Check out the [App Actions Beta sample](https://github.com/actions-on-google/appactions-common-biis-kotlin/tree/codelab-complete-beta)
+that implementes App Actions using the [Android Shortcuts](https://developer.android.com/guide/topics/ui/shortcuts)
+framework. This framework integration is in the Beta release stage.
+
+If you're learning how to maintain App Actions implemented using an
+[actions.xml](https://developers.google.com/assistant/app/action-schema) resource
+file, continue with this sample.
+
 ## Requirements
 
 For security and verification reasons, the account you use to upload your `actions.xml` file with the App Actions test tool must have ownership of the application ID.
