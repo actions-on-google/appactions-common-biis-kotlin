@@ -23,60 +23,15 @@
         application ID you specified in app/build.gradle.
     -->
 
-    <capability android:name="actions.intent.GET_THING">
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:targetPackage="PUT_YOUR_APPLICATION_ID_HERE"
-            android:targetClass="com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity"
-            >
-            <parameter
-                android:name="thing.name"
-                android:key="q"/>
-        </intent>
-    </capability>
 
-    <!--    OPEN APP FEATURE with inline inventory-->
-    <!--    https://developers.google.com/assistant/app/reference/built-in-intents/common/open-app-feature-->
 
-    <!-- shortcuts are bound to the capability below, and represents the different types
-      of task in this to do app-->
-    <shortcut
-        android:shortcutId="active_tasks"
-        android:shortcutShortLabel="@string/label_active"
-        android:enabled="false">
-        <capability-binding
-            android:key="actions.intent.OPEN_APP_FEATURE">
-            <parameter-binding
-                android:key="feature"
-                android:value="@array/active_tasks_synonyms" />
-        </capability-binding>
-    </shortcut>
+    <!--    OPEN APP FEATURE with inline inventory
+        https://developers.google.com/assistant/app/reference/built-in-intents/common/open-app-feature
 
-    <shortcut
-        android:shortcutId="completed_tasks"
-        android:shortcutShortLabel="@string/label_completed"
-        android:enabled="false">
-        <capability-binding
-            android:key="actions.intent.OPEN_APP_FEATURE">
-            <parameter-binding
-                android:key="feature"
-                android:value="@array/completed_tasks_synonyms" />
-        </capability-binding>
-    </shortcut>
-
-    <!--
         Be sure to replace all occurrences of PUT_YOUR_APPLICATION_ID_HERE with the
         application ID you specified in app/build.gradle.
     -->
-    <capability android:name="actions.intent.OPEN_APP_FEATURE">
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:targetPackage="PUT_YOUR_APPLICATION_ID_HERE"
-            android:targetClass="com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity">
-            <parameter
-                android:name="feature"
-                android:key="feature"
-                shortcutMatchRequired="true"/>
-        </intent>
-    </capability>
+
+
+
 </shortcuts>
