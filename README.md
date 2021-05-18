@@ -11,7 +11,7 @@ To see the completed project, go to `codelab-complete-beta` branch.
 
 ## How to use this sample
 
-Follow the steps on the [Extend an Android app to Google Assistant with App Actions (Beta)](https://codelabs.developers.google.com/codelabs/codelab-beta) codelab.
+Follow the steps on the [Extend an Android app to Google Assistant with App Actions (Beta)](https://codelabs.developers.google.com/codelabs/appactions-beta) codelab.
 
 ## Contribution guidelines
 
