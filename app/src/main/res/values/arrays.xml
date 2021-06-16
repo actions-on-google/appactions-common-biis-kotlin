@@ -18,6 +18,7 @@
 <resources>
     <array name="completed_tasks_synonyms">
         <item>completed</item>
+        <item>completed tasks</item>
         <item>finished</item>
         <item>finished tasks</item>
     </array>
