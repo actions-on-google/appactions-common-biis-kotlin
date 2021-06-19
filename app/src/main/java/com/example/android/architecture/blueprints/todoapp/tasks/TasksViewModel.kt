@@ -252,11 +252,11 @@ class TasksViewModel(
         _forceUpdate.value = true
     }
 
-    private fun getSavedFilterType() : TasksFilterType {
+    private fun getSavedFilterType(): TasksFilterType {
         return savedStateHandle.get(TASKS_FILTER_SAVED_STATE_KEY) ?: ALL_TASKS
     }
 
-    private fun getFilterKeyword() : String {
+    private fun getFilterKeyword(): String {
         return savedStateHandle.get(TASKS_FILTER_KEYWORD) ?: ""
     }
 }
