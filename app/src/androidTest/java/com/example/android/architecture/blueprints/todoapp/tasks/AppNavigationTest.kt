@@ -35,6 +35,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
+import androidx.test.filters.Suppress
 import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.ServiceLocator
 import com.example.android.architecture.blueprints.todoapp.data.Task
@@ -125,6 +126,7 @@ class AppNavigationTest {
     }
 
     @Test
+    @Suppress
     fun tasksScreen_clickOnAndroidHomeIcon_OpensNavigation() {
         // start up Tasks screen
         val activityScenario = ActivityScenario.launch(TasksActivity::class.java)

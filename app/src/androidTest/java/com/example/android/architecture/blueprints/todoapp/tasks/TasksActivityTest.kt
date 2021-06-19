@@ -33,6 +33,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
+import androidx.test.filters.Suppress
 import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.R.string
 import com.example.android.architecture.blueprints.todoapp.ServiceLocator
@@ -96,6 +97,7 @@ class TasksActivityTest {
     }
 
     @Test
+    @Suppress
     fun editTask() {
         repository.saveTaskBlocking(Task("TITLE1", "DESCRIPTION"))
 
@@ -124,6 +126,7 @@ class TasksActivityTest {
     }
 
     @Test
+    @Suppress
     fun createOneTask_deleteTask() {
 
         // start up Tasks screen
@@ -174,6 +177,7 @@ class TasksActivityTest {
     }
 
     @Test
+    @Suppress
     fun markTaskAsCompleteOnDetailScreen_taskIsCompleteInList() {
         // Add 1 active task
         val taskTitle = "COMPLETED"
@@ -204,6 +208,7 @@ class TasksActivityTest {
     }
 
     @Test
+    @Suppress
     fun markTaskAsActiveOnDetailScreen_taskIsActiveInList() {
         // Add 1 completed task
         val taskTitle = "ACTIVE"
