@@ -35,15 +35,13 @@ android {
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
-    android {
-        sourceSets {
-            String sharedTestDir = 'src/sharedTest/java'
-            test {
-                java.srcDirs += sharedTestDir
-            }
-            androidTest {
-                java.srcDirs += sharedTestDir
-            }
+    sourceSets {
+        String sharedTestDir = 'src/sharedTest/java'
+        test {
+            java.srcDirs += sharedTestDir
+        }
+        androidTest {
+            java.srcDirs += sharedTestDir
         }
     }
 
@@ -62,8 +60,6 @@ android {
             testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
         }
     }
-
-    flavorDimensions "default"
 
     // Always show the result of every unit test, even if it passes.
     testOptions.unitTests {
@@ -96,7 +92,6 @@ android {
  */
 dependencies {
 
-    // App dependencies
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.cardview:cardview:$cardVersion"
     implementation "com.google.android.material:material:$materialVersion"
