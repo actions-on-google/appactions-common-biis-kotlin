@@ -16,7 +16,9 @@
 package com.example.android.architecture.blueprints.todoapp.tasks
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -27,7 +29,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.android.architecture.blueprints.todoapp.R
 import com.google.android.material.navigation.NavigationView
-import timber.log.Timber
 
 /**
  * Main activity for the todoapp. Holds the Navigation Host Fragment and the Drawer, Toolbar, etc.
@@ -44,7 +45,7 @@ class TasksActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
 
         // Logging for troubleshooting purposes
-        Timber.tag(TAG).d("======= debugging data ========= %s", intent?.data)
+        logIntent(intent)
 
         val navController: NavController = findNavController(R.id.nav_host_fragment)
         appBarConfiguration =
@@ -54,6 +55,19 @@ class TasksActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         findViewById<NavigationView>(R.id.nav_view)
             .setupWithNavController(navController)
+    }
+
+    fun logIntent(intent: Intent) {
+        val bundle: Bundle = intent.extras ?: return
+
+        Log.d(TAG, "======= logIntent ========= %s")
+        Log.d(TAG, "Logging intent data start")
+
+        bundle.keySet().forEach { key ->
+            Log.d(TAG, "[$key=${bundle.get(key)}]");
+        }
+
+        Log.d(TAG, "Logging intent data complete")
     }
 
     override fun onSupportNavigateUp(): Boolean {

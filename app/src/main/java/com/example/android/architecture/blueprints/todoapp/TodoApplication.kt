@@ -18,8 +18,6 @@ package com.example.android.architecture.blueprints.todoapp
 
 import android.app.Application
 import com.example.android.architecture.blueprints.todoapp.data.source.TasksRepository
-import timber.log.Timber
-import timber.log.Timber.DebugTree
 
 /**
  * An application that lazily provides a repository. Note that this Service Locator pattern is
@@ -35,6 +33,5 @@ class TodoApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        if (BuildConfig.DEBUG) Timber.plant(DebugTree())
     }
 }

@@ -13,7 +13,6 @@ The app demonstrates usage of the following built-in intents (BIIs) in the commo
     * "Open active tasks in test app action"
     * "Open completed tasks in test app action"
     * "Open all tasks in test app action"
-    * "Open stats in test app action"
 
 * `actions.intent.GET_THING`: Search and filter within the app using keywords. Here are some example user queries that match this intent:
 
@@ -24,21 +23,11 @@ The app demonstrates usage of the following built-in intents (BIIs) in the commo
   <img alt="App Actions Demo" src="media/to-do-demo.gif">
 </div>
 
-## Beta available
-
-Check out the [App Actions Beta sample](https://github.com/actions-on-google/appactions-common-biis-kotlin/tree/codelab-complete-beta)
-that implementes App Actions using the [Android Shortcuts](https://developer.android.com/guide/topics/ui/shortcuts)
-framework. This framework integration is in the Beta release stage.
-
-If you're learning how to maintain App Actions implemented using an
-[actions.xml](https://developers.google.com/assistant/app/action-schema) resource
-file, continue with this sample.
-
 ## Requirements
 
-For security and verification reasons, the account you use to upload your `actions.xml` file with the App Actions test tool must have ownership of the application ID.
+For security and verification reasons, the account you use to upload your `shortcuts.xml` file with the App Actions test tool must have ownership of the application ID.
 
-Additionally, you must meet the setup and usage requirements for [App Actions](https://developers.google.com/assistant/app/get-started#requirements) and for the [App Actions test tool](https://developers.google.com/assistant/app/test-tool#setup_requirements).
+Additionally, you must meet the setup and usage requirements for [App Actions](https://developers.google.com/assistant/app/get-started#requirements) and for the [Google Assistant plugin](https://developers.google.com/assistant/app/test-tool#setup_requirements).
 
 ## How to use this sample
 
@@ -52,21 +41,41 @@ Clone or download the project to your preferred location. Then, import and modif
     android {
         defaultConfig {
             // This ID uniquely identifies your app on the device and in Google Play
-            applicationId "com.example.myapp"
+            applicationId "PUT_YOUR_APPLICATION_ID_HERE"
         }
     }
     ```
 
-3. In Android Studio, find the root directory of the sample.
-4. Select the `build.gradle` file.
-5. Follow the instructions presented by the IDE.
+3. Change the two (2) `android:targetPackage` in [app/src/main/res/xml/shortcuts.xml](app/src/main/res/xml/shortcuts.xml) to the `applicationId` in your [app/build.gradle](app/build.gradle).
+
+    ```xml
+    <capability android:name="actions.intent.GET_THING">
+        <intent
+            android:targetPackage="PUT_YOUR_APPLICATION_ID_HERE"
+            >
+        </intent>
+    </capability>
+    ```
+   
+    ```xml
+    <capability android:name="actions.intent.GET_THING">
+        <intent
+            android:targetPackage="PUT_YOUR_APPLICATION_ID_HERE"
+            >
+        </intent>
+    </capability>
+    ```
+
+4. In Android Studio, find the root directory of the sample.
+5. Select the `build.gradle` file.
+6. Follow the instructions presented by the IDE.
 
 Then, you can try the App Actions by following these steps:
 
 1. Build and run the sample on your physical test device (**Run "app"**).
-2. Open the App Actions test tool (**Tools > App Actions > App Actions Test Tool**).
+2. Open the App Actions test tool (**Tools > Google Assistant > App Actions Test Tool**).
 3. Define an invocation name to use for invoking the App Actions (like "my test app"). This name is only for testing purposes, so it can be different from what you want to deploy to production later.
-4. Click **Create Preview**. Once your preview is created, the test tool window updates to display information about BIIs found in your `actions.xml` file.
+4. Click **Create Preview**. Once your preview is created, the test tool window updates to display information about BIIs found in your `shortcuts.xml` file.
 
 <div style="text-align:center">
   <img alt="App Action Test Tool" width="40%" height="40%" src="media/app-actions-test-tool.png">
