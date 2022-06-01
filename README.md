@@ -13,10 +13,6 @@ This is the starting code for the [Extend an Android app to Google Assistant wit
 To see the completed project, go to `master` branch.
 
 
-## How to use this sample
-
-Follow the steps on the [Extend an Android app to Google Assistant with App Actions](https://codelabs.developers.google.com/codelabs/appactions) codelab.
-
 ## Contribution guidelines
 
 If you want to contribute to this project, be sure to review the
