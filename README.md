@@ -1,4 +1,6 @@
-# App Actions to-do list sample
+# *:warning: Warning: Go to [App Actions to-do list sample](https://github.com/android/app-actions/common-bii) for maintained sample.
+
+*:warning: Warning: This [App Actions to-do list sample](https://github.com/android/app-actions/common-bii) has migrated to [App-Action directory](https://github.com/android/app-actions) in Andriod Github. This version will no longer be maintained.*
 
 This sample Android app manages items on to-do lists. Users can add items to to-do lists, search for items by category, and view information about completed tasks.
 
