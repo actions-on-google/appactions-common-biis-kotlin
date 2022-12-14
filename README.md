@@ -1,8 +1,6 @@
-# App Actions to-do list starting branch for codelab
+# *:warning: Warning: Go to [App Actions to-do list sample](https://github.com/android/app-actions/common-bii) for maintained sample.
 
-## Codelab start branch
-
-For detailed instructions on using this sample, refer to [Extend an Android app to Google Assistant with App Actions (Level 2)](https://codelabs.developers.google.com/codelabs/appactions-2).
+*:warning: Warning: This [App Actions to-do list sample](https://github.com/android/app-actions/common-bii) has migrated to [App-Action directory](https://github.com/android/app-actions) in Andriod Github. This version will no longer be maintained.*
 
 This sample Android app manages items on to-do lists. Users can add items to to-do lists, search for items by category, and view information about completed tasks.
 
