@@ -25,7 +25,7 @@ android {
 
     defaultConfig {
         // This ID uniquely identifies your app on the device and in Google Play Store
-        applicationId "PUT_YOUR_APPLICATION_ID_HERE"
+        applicationId "com.zol.android.fitactions"
 
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion

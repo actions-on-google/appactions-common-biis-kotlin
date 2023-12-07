@@ -45,7 +45,9 @@ import com.google.android.material.snackbar.Snackbar
  * Const values from App Action capability's parameter key
  */
 private const val OPEN_APP_FEATURE = "feature"
-private const val GET_THING = "q"
+private const val GET_THING = "get"
+private const val CREATE_THING = "name"
+private const val CREATE_DESCRIPTION = "description"
 
 /**
  * Const value for logging errors
@@ -81,6 +83,12 @@ class TasksFragment : Fragment() {
         viewModel.setFiltering(TasksFilterType.find(activity?.intent?.extras?.getString(OPEN_APP_FEATURE)))
 
         viewModel.setFiltering(activity?.intent?.extras?.getString(GET_THING))
+        activity?.intent?.extras?.getString(CREATE_THING)?.let { name ->
+            activity?.intent?.extras?.getString(CREATE_DESCRIPTION)?.let { des ->
+                viewModel.createTask(Task(name, des))
+            }
+        }
+        //(activity?.intent?.extras?.getString(CREATE_THING))
 
         return viewDataBinding.root
     }

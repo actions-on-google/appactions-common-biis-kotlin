@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2020 Google LLC
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,45 +15,48 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.architecture.blueprints.todoapp"
-    xmlns:tools="http://schemas.android.com/tools">
+package="com.example.android.architecture.blueprints.todoapp"
+xmlns:tools="http://schemas.android.com/tools">
 
-    <application
-        android:name=".TodoApplication"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+<application
+    android:name=".TodoApplication"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:supportsRtl="true"
+    android:theme="@style/AppTheme">
 
-        <activity
-            android:name="com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:theme="@style/AppTheme.OverlapSystemBar"
-            android:exported="true">
+    <activity
+        android:name="com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity"
+        android:windowSoftInputMode="adjustResize"
+        android:theme="@style/AppTheme.OverlapSystemBar"
+        android:exported="true">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
 
-            <intent-filter tools:targetApi="m">
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="todo.androidappactions.com"
-                    android:scheme="https" />
-            </intent-filter>
+        <intent-filter tools:targetApi="m">
+            <action android:name="android.intent.action.VIEW" />
 
-            <!-- When building your project, <nav-graph> element will be replaced with generated
+            <category android:name="android.intent.category.BROWSABLE" />
+            <category android:name="android.intent.category.DEFAULT" />
+
+            <data
+                android:host="todo.androidappactions.com"
+                android:scheme="https" />
+        </intent-filter>
+
+        <!-- When building your project, <nav-graph> element will be replaced with generated
             <intent-filter> elements for all deep links defined in the navigation graph. -->
-            <nav-graph android:value="@navigation/nav_graph" />
+        <nav-graph android:value="@navigation/nav_graph" />
 
-            <!-- Required reference to App Actions shortcuts.xml file. -->
-            <meta-data
-                android:name="android.app.shortcuts"
-                android:resource="@xml/shortcuts" />
-        </activity>
-    </application>
+        <!-- Required reference to App Actions shortcuts.xml file. -->
+        <meta-data
+            android:name="android.app.shortcuts"
+            android:resource="@xml/shortcuts" />
+    </activity>
+
+</application>
 
 </manifest>

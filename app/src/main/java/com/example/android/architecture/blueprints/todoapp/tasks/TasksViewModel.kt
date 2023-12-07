@@ -58,6 +58,10 @@ class TasksViewModel(
         tasksRepository.observeTasks().distinctUntilChanged().switchMap { filterTasks(it) }
     }
 
+    fun createTask(newTask: Task) = viewModelScope.launch {
+        tasksRepository.saveTask(newTask)
+    }
+
     val items: LiveData<List<Task>> = _items
     val filterKeyword: LiveData<String> = savedStateHandle.getLiveData(TASKS_FILTER_KEYWORD)
 

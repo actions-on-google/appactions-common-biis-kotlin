@@ -36,5 +36,11 @@
         <item>show progress</item>
         <item>stats</item>
     </array>
+    <array name="finishQueries">
+        <item>finish $name</item>
+        <item>finish task $name</item>
+        <item>close $name</item>
+        <item>close task $name</item>
+    </array>
 
 </resources>

@@ -25,14 +25,14 @@
     -->
     <!-- Add Get Thing BII capability   -->
     <capability android:name="actions.intent.GET_THING">
-        <intent
+        <slice
             android:action="android.intent.action.VIEW"
             android:targetClass="com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity"
             android:targetPackage="com.zol.android.fitactions">
             <parameter
                 android:name="thing.name"
                 android:key="get" />
-        </intent>
+        </slice>
     </capability>
 
     <capability android:name="actions.intent.CREATE_THING">
@@ -51,20 +51,20 @@
         </intent>
     </capability>
 
-<!--    <capability-->
-<!--        android:name="custom.actions.intent.FINISH_THING"-->
-<!--        app:queryPatterns="@array/finishQueries">-->
-<!--        <intent-->
-<!--            android:action="android.intent.action.VIEW"-->
-<!--            android:targetClass="com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity"-->
-<!--            android:targetPackage="com.zol.android.fitactions">-->
-<!--            <url-template android:value="http://todo.androidappactions.com{?name}" />-->
-<!--            <parameter-->
-<!--                android:name="name"-->
-<!--                android:key="name"-->
-<!--                android:mimeType="https://schema.org/Text" />-->
-<!--        </intent>-->
-<!--    </capability>-->
+    <!--<capability
+        android:name="custom.actions.intent.FINISH_THING"
+        app:queryPatterns="@array/finishQueries">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity"
+            android:targetPackage="com.zol.android.fitactions">
+            <url-template android:value="http://todo.androidappactions.com{?name}" />
+            <parameter
+                android:name="name"
+                android:key="name"
+                android:mimeType="https://schema.org/Text" />
+        </intent>
+    </capability>-->
 
 
     <!--    OPEN APP FEATURE with inline inventory
